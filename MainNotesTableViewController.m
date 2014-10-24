@@ -10,6 +10,7 @@
 #import "NoteTableViewCell.h"
 #import "goatNoteDataStore.h"
 #import "goatNote.h"
+#import "AddNewNoteViewController.h"
 
 @interface MainNotesTableViewController ()
 @property (strong, nonatomic) NSMutableArray *imageArray;
@@ -34,6 +35,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,14 +110,21 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"editNote"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        AddNewNoteViewController *newVC = segue.destinationViewController;
+        newVC.selectedNote = [self.dataStore.goatNoteArray objectAtIndex: indexPath.row];
+    }
+    //NSLog(@"%dl",indexPath.row);
 }
-*/
+
 
 @end

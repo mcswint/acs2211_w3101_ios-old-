@@ -8,6 +8,7 @@
 
 #import "AddNewNoteViewController.h"
 #import "goatNoteDataStore.h"
+#import "goatNote.h"
 
 @interface AddNewNoteViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -15,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextView *bodyTextView;
 @property (strong, nonatomic) goatNoteDataStore *dataStore;
+
+
 
 - (IBAction)saveNote:(id)sender;
 
@@ -26,7 +29,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.noteImageView.image = [UIImage imageNamed:@"sassyGoat.jpg"];
+    if (_selectedNote != nil ){
+        self.noteImageView.image = _selectedNote.notePicture;
+        self.titleTextField.text = _selectedNote.noteTitle;
+        self.bodyTextView.text = _selectedNote.noteBody;
+        
+    } else {
+    
+        self.noteImageView.image = [UIImage imageNamed:@"sassyGoat.jpg"];
+    }
     
     self.dataStore = [goatNoteDataStore sharedGoatNotesDataStore];
     // Do any additional setup after loading the view.
@@ -54,7 +65,14 @@
     NSString *title = self.titleTextField.text;
     NSString *body = self.bodyTextView.text;
     
-    [self.dataStore createGoatNoteWithTitle:title withBody:body withPciture:goatPicture];
+    if (_selectedNote != nil){
+        _selectedNote.notePicture = self.noteImageView.image;
+        _selectedNote.noteTitle = self.titleTextField.text;
+        _selectedNote.noteBody = self.bodyTextView.text;
+    } else {
+        [self.dataStore createGoatNoteWithTitle:title withBody:body withPciture:goatPicture];
+        
+    }
     
     [self.navigationController popViewControllerAnimated:YES];
 }

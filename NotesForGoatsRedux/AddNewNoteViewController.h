@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "goatNote.h"
 
 @interface AddNewNoteViewController : UIViewController
+
+@property (strong, nonatomic) goatNote *selectedNote;
 
 @end
