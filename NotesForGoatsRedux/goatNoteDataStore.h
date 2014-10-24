@@ -12,6 +12,7 @@
 @interface goatNoteDataStore : NSObject
 
 @property (strong, nonatomic) NSMutableArray *goatNoteArray;
+@property (strong, nonatomic) NSData *archive;
 
 + (instancetype) sharedGoatNotesDataStore;
 

@@ -27,6 +27,7 @@
     self = [super init];
     if (self) {
         _goatNoteArray = [[NSMutableArray alloc] init];
+        _archive = [[NSData alloc] init];
     }
     return self;
 }
@@ -38,5 +39,25 @@
     [self.goatNoteArray addObject:newNote];
     
 }
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.goatNoteArray = [decoder decodeObjectForKey:@"goatNoteArray"];
+
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:self.goatNoteArray forKey:@"goatNoteArray"];
+    
+    
+}
+
+
 
 @end

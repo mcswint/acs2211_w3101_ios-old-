@@ -25,11 +25,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"view did load");
     
     self.dataStore = [goatNoteDataStore sharedGoatNotesDataStore];
-                             
-
-                             
+    
+    NSData *archivedData = [[NSUserDefaults standardUserDefaults] objectForKey:@"goatNoteArray"];
+    self.dataStore.goatNoteArray = [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -37,6 +39,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 - (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"view will appear");
     [self.tableView reloadData];
 }
 
@@ -86,6 +89,11 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.dataStore.goatNoteArray removeObjectAtIndex:indexPath.row];
+    
+    NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:_dataStore.goatNoteArray];
+    [[NSUserDefaults standardUserDefaults] setObject:archivedData forKey:@"goatNoteArray"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [self.tableView reloadData];
    /** if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source

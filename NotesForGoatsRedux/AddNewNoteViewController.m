@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextView *bodyTextView;
 @property (strong, nonatomic) goatNoteDataStore *dataStore;
+@property (strong, nonatomic) NSData *archive;
 
 
 
@@ -41,7 +42,6 @@
     
         self.noteImageView.image = [UIImage imageNamed:@"sassyGoat.jpg"];
     }
-    
     self.dataStore = [goatNoteDataStore sharedGoatNotesDataStore];
     // Do any additional setup after loading the view.
 }
@@ -68,14 +68,31 @@
     NSString *title = self.titleTextField.text;
     NSString *body = self.bodyTextView.text;
     
+    
+    
     if (_selectedNote != nil){
         _selectedNote.notePicture = self.noteImageView.image;
         _selectedNote.noteTitle = self.titleTextField.text;
         _selectedNote.noteBody = self.bodyTextView.text;
+        
     } else {
         [self.dataStore createGoatNoteWithTitle:title withBody:body withPciture:goatPicture];
         
+         //[NSKeyedArchiver archiveRootObject:_dataStore toFile:@"archive"];
+       // _archive = [NSKeyedArchiver archivedDataWithRootObject:_dataStore];
     }
+    
+/**    for (goatNote *g in _dataStore.goatNoteArray){
+        NSLog(@"%@", g.noteTitle);
+       NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:g.noteTitle];
+        [[NSUserDefaults standardUserDefaults] setObject:archivedData forKey:@"title"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+ */
+    
+    NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:_dataStore.goatNoteArray];
+    [[NSUserDefaults standardUserDefaults] setObject:archivedData forKey:@"goatNoteArray"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

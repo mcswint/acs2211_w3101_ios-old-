@@ -7,9 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "goatNoteDataStore.h"
+
 
 @interface AppDelegate ()
-
+@property (strong, nonatomic) goatNoteDataStore *dataStore;
+@property (strong, nonatomic) NSData *archive;
 @end
 
 @implementation AppDelegate
@@ -18,7 +21,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     NSLog(@"application didFinishLaunchingWithOptions");
+    
+    //self.dataStore = [goatNoteDataStore sharedGoatNotesDataStore];
+   // self.dataStore = [NSKeyedUnarchiver unarchiveObjectWithData:_archive];
+    NSData *archivedData = [[NSUserDefaults standardUserDefaults] objectForKey:@"goatNoteArray"];
+    self.dataStore.goatNoteArray = [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
+    
     return YES;
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
