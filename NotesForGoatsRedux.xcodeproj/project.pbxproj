@@ -13,7 +13,6 @@
 		4E1B2FAD19F4CB5D00603B7C /* goatNoteDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1B2FAC19F4CB5D00603B7C /* goatNoteDataStore.m */; };
 		4E1B2FB019F4D58700603B7C /* AddNewNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1B2FAF19F4D58700603B7C /* AddNewNoteViewController.m */; };
 		4E1B2FB219F4E08900603B7C /* faintedGoat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E1B2FB119F4E08900603B7C /* faintedGoat.jpg */; };
-		4E1B2FB519F9DE9000603B7C /* EditNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1B2FB419F9DE9000603B7C /* EditNoteViewController.m */; };
 		4EFC6ED819F4AB220094685B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFC6ED719F4AB220094685B /* main.m */; };
 		4EFC6EDB19F4AB220094685B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFC6EDA19F4AB220094685B /* AppDelegate.m */; };
 		4EFC6EE119F4AB220094685B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EFC6EDF19F4AB220094685B /* Main.storyboard */; };
@@ -44,8 +43,6 @@
 		4E1B2FAE19F4D58700603B7C /* AddNewNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewNoteViewController.h; sourceTree = "<group>"; };
 		4E1B2FAF19F4D58700603B7C /* AddNewNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewNoteViewController.m; sourceTree = "<group>"; };
 		4E1B2FB119F4E08900603B7C /* faintedGoat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = faintedGoat.jpg; sourceTree = "<group>"; };
-		4E1B2FB319F9DE9000603B7C /* EditNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNoteViewController.h; sourceTree = "<group>"; };
-		4E1B2FB419F9DE9000603B7C /* EditNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNoteViewController.m; sourceTree = "<group>"; };
 		4EFC6ED219F4AB220094685B /* NotesForGoatsRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesForGoatsRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EFC6ED619F4AB220094685B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EFC6ED719F4AB220094685B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -93,8 +90,6 @@
 		4E1B2FA219F4B88300603B7C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4E1B2FB319F9DE9000603B7C /* EditNoteViewController.h */,
-				4E1B2FB419F9DE9000603B7C /* EditNoteViewController.m */,
 				4E1B2FAE19F4D58700603B7C /* AddNewNoteViewController.h */,
 				4E1B2FAF19F4D58700603B7C /* AddNewNoteViewController.m */,
 				4EFC6EFB19F4AB380094685B /* MainNotesTableViewController.h */,
@@ -290,7 +285,6 @@
 				4EFC6ED819F4AB220094685B /* main.m in Sources */,
 				4E1B2FA519F4B8C400603B7C /* NoteTableViewCell.m in Sources */,
 				4E1B2FAD19F4CB5D00603B7C /* goatNoteDataStore.m in Sources */,
-				4E1B2FB519F9DE9000603B7C /* EditNoteViewController.m in Sources */,
 				4E1B2FAA19F4C90B00603B7C /* goatNote.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,9 @@
 #import "goatNoteDataStore.h"
 #import "goatNote.h"
 
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
 @interface AddNewNoteViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *noteImageView;
@@ -103,5 +106,59 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
+
+
+
+- (IBAction)sendEmail:(id)sender {
+    NSLog(@"%@", sender);
+    if ([MFMailComposeViewController canSendMail]) {
+        
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+        mailViewController.mailComposeDelegate = self;
+        
+        NSString *messageSubject = self.titleTextField.text;
+        NSString *messageBody = self.bodyTextView.text;
+        
+        NSData *imageData = UIImageJPEGRepresentation(self.noteImageView.image, 1);
+        [mailViewController addAttachmentData:imageData mimeType:@"image/jpeg" fileName:@"NoteAttachment.jpg"];
+        
+        [mailViewController setSubject:messageSubject];
+        [mailViewController setMessageBody:messageBody isHTML:NO];
+        
+        [self.navigationController presentViewController:mailViewController animated:YES completion:nil];
+        
+    }
+    else {
+        
+        NSLog(@"Device is unable to send email in its current state.");
+        
+    }
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 @end
